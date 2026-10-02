@@ -1,5 +1,5 @@
 {
- "gerado": "2026-09-24",
+ "gerado": "2026-10-02",
  "artefatos": [
   {
    "slug": "dossie",
@@ -25,10 +25,17 @@
    ],
    "atual": {
     "caminho": "dossie/",
-    "sha256": "70053905efd7b017a1b78ced6d87701cabb3c0c44c0b347f1d7eccffc8c1b244",
-    "bytes": 661346
+    "sha256": "4ce2ba9bdaf0c058332b28f2f13b8d49226b166010cac27adaa7074525ac6752",
+    "bytes": 665128
    },
    "versoes": [
+    {
+     "v": "v5",
+     "caminho": "dossie/v5/",
+     "bytes": 665128,
+     "sha256": "4ce2ba9bdaf0c058332b28f2f13b8d49226b166010cac27adaa7074525ac6752",
+     "data": "2026-10-02"
+    },
     {
      "v": "v4",
      "caminho": "dossie/v4/",
@@ -69,10 +76,17 @@
    ],
    "atual": {
     "caminho": "tramitacao/",
-    "sha256": "d794bfc01e46aefd5c63da141d88c0f0d78cff5ede91ecf36090b3d76a04d66f",
-    "bytes": 144708
+    "sha256": "990c8bce54687f96d7c1269baacf398c82abb25d5ed7b9f274c41f2cac05bb93",
+    "bytes": 146305
    },
    "versoes": [
+    {
+     "v": "v4",
+     "caminho": "tramitacao/v4/",
+     "bytes": 146305,
+     "sha256": "990c8bce54687f96d7c1269baacf398c82abb25d5ed7b9f274c41f2cac05bb93",
+     "data": "2026-10-02"
+    },
     {
      "v": "v3",
      "caminho": "tramitacao/v3/",
@@ -113,10 +127,17 @@
    ],
    "atual": {
     "caminho": "dificuldades/",
-    "sha256": "e7d12802f67216c1e12a603d8a1e84cad9c0c39cfb5cca8b2b594b72f9157a88",
-    "bytes": 473938
+    "sha256": "a0a68dba1d1e767a6d59bca9672a19657310e99162de38b6f66b5d864e33a89a",
+    "bytes": 475843
    },
    "versoes": [
+    {
+     "v": "v3",
+     "caminho": "dificuldades/v3/",
+     "bytes": 475843,
+     "sha256": "a0a68dba1d1e767a6d59bca9672a19657310e99162de38b6f66b5d864e33a89a",
+     "data": "2026-10-02"
+    },
     {
      "v": "v2",
      "caminho": "dificuldades/v2/",
@@ -185,7 +206,7 @@
   },
   {
    "arquivo": "contagens.json",
-   "descricao": "Todas as contagens desta série, em JSON",
+   "descricao": "Todas as contagens desta série, num único arquivo",
    "bytes": 910,
    "sha256": "85ccfacf851ff868d6d15aba3380bca236add3679843ab85e4361c47761dbfe3"
   }

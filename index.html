@@ -43,6 +43,12 @@ table{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
 th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule2);vertical-align:top}
 td.n{text-align:right;font-family:ui-monospace,monospace;white-space:nowrap}
 th a{color:var(--acc)}
+sup.nref a{text-decoration:none;font-weight:600;padding:0 1px;color:var(--acc)}
+section.notas-fim{margin-top:40px;padding-top:16px;border-top:1px solid var(--rule)}
+section.notas-fim h2{font-size:18px}
+ol.notas{font-size:13px;line-height:1.5;padding-left:22px;margin:8px 0 0;color:var(--muted)}
+ol.notas li{margin:5px 0}
+ol.notas a{color:var(--acc);text-decoration:none}
 footer{margin-top:46px;padding-top:22px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--faint);
   max-width:76ch;line-height:1.6}
 footer a{color:var(--acc)}
@@ -92,9 +98,9 @@ footer a{color:var(--acc)}
 <header>
   <div class="kick">Dados abertos · Câmara Legislativa do Distrito Federal</div>
   <h1>Relatórios adhoc<br>sobre o que a CLDF publica — e sobre o que não publica</h1>
-  <p class="dek">Cada relatório abaixo é derivado exclusivamente de dados abertos, colhidos por requisições
-  públicas e não autenticadas. Os dados que os sustentam estão nesta mesma página, em CSV. Nada aqui pede
-  que se acredite: tudo pode ser reconstruído.</p>
+  <p class="dek">Cada relatório abaixo foi feito só com dados abertos, lidos em endereços públicos, sem senha
+  nem cadastro. As planilhas que os sustentam estão nesta mesma página. Nada aqui pede que se acredite:
+  qualquer pessoa pode refazer as contas.<sup class="nref"><a href="#nota-1" id="ref-1">1</a></sup></p>
 </header>
 
 <h2 class="sec">Conjunto <span class="mono">relatorio-cldf</span></h2>
@@ -107,8 +113,8 @@ chegar sozinho a esses números.</p>
       <p class="linha">Toda ocorrência das três palavras-chave no acervo aberto da CLDF, com o documento exato.</p>
       <div class="nums"><div><b>743</b><span>ocorrências</span></div><div><b>281</b><span>no caso Master</span></div><div><b>66</b><span>proposições</span></div><div><b>28</b><span>votações</span></div></div>
       <p class="vs">Versões:
-        <a href="dossie/v4/" title="70053905efd7b017">v4</a> <a href="dossie/v3/" title="b7edb415b2e8358d">v3</a>
-        <span class="sh mono" title="sha256 da versão atual">70053905efd7b017</span>
+        <a href="dossie/v5/" title="4ce2ba9bdaf0c058">v5</a> <a href="dossie/v4/" title="70053905efd7b017">v4</a> <a href="dossie/v3/" title="b7edb415b2e8358d">v3</a>
+        <span class="sh mono" title="código de conferência da versão atual">4ce2ba9bdaf0c058</span>
       </p>
     </article>
 
@@ -117,8 +123,8 @@ chegar sozinho a esses números.</p>
       <p class="linha">A linha do tempo conjunta do pedido de informação e da lei — e a resposta que nunca veio.</p>
       <div class="nums"><div><b>106</b><span>eventos</span></div><div><b>5d 17h</b><span>da criação à sanção</span></div><div><b>9</b><span>emendas</span></div><div><b>0</b><span>respostas</span></div></div>
       <p class="vs">Versões:
-        <a href="tramitacao/v3/" title="d794bfc01e46aefd">v3</a> <a href="tramitacao/v2/" title="1fe0a1746dc3ff42">v2</a>
-        <span class="sh mono" title="sha256 da versão atual">d794bfc01e46aefd</span>
+        <a href="tramitacao/v4/" title="990c8bce54687f96">v4</a> <a href="tramitacao/v3/" title="d794bfc01e46aefd">v3</a> <a href="tramitacao/v2/" title="1fe0a1746dc3ff42">v2</a>
+        <span class="sh mono" title="código de conferência da versão atual">990c8bce54687f96</span>
       </p>
     </article>
 
@@ -127,8 +133,8 @@ chegar sozinho a esses números.</p>
       <p class="linha">O que existe, o que funciona, o que não funciona, o que está concentrado e fragmentado.</p>
       <div class="nums"><div><b>1.231</b><span>pedidos de informação</span></div><div><b>0</b><span>respostas legíveis</span></div><div><b>55.610</b><span>documentos sem texto</span></div><div><b>23 de 48</b><span>tipos nunca legíveis</span></div></div>
       <p class="vs">Versões:
-        <a href="dificuldades/v2/" title="e7d12802f67216c1">v2</a> <a href="dificuldades/v1/" title="a891f818142d38e9">v1</a>
-        <span class="sh mono" title="sha256 da versão atual">e7d12802f67216c1</span>
+        <a href="dificuldades/v3/" title="a0a68dba1d1e767a">v3</a> <a href="dificuldades/v2/" title="e7d12802f67216c1">v2</a> <a href="dificuldades/v1/" title="a891f818142d38e9">v1</a>
+        <span class="sh mono" title="código de conferência da versão atual">a0a68dba1d1e767a</span>
       </p>
     </article>
 
@@ -136,43 +142,58 @@ chegar sozinho a esses números.</p>
 <p class="sub">A primeira geração destes mesmos relatórios, anterior à publicação. Fica registrada
 aqui por honestidade de percurso: existe, não está no ar, e foi substituída pelas versões acima.</p>
 <table>
-<thead><tr><th>Rascunho</th><th>O que é</th><th class="n">Bytes</th><th>Estado</th></tr></thead>
+<thead><tr><th>Rascunho</th><th>O que é</th><th class="n">Tamanho</th><th>Estado</th></tr></thead>
 <tbody>
-<tr><th class="mono">index.html</th><td>BRB · Master · Vorcaro no registro da CLDF</td><td class="n">52.602</td><td class="sh">local, não publicado</td></tr>
-<tr><th class="mono">dossie.html</th><td>Dossiê BRB–Master, primeira geração</td><td class="n">654.881</td><td class="sh">local, não publicado</td></tr>
-<tr><th class="mono">tramitacao.html</th><td>Pergunta e Autorização, primeira geração</td><td class="n">130.403</td><td class="sh">local, não publicado</td></tr>
+<tr><th class="mono">index.html</th><td>BRB · Master · Vorcaro no registro da CLDF</td><td class="n">57.105</td><td class="sh">local, não publicado</td></tr>
+<tr><th class="mono">dossie.html</th><td>Dossiê BRB–Master, primeira geração</td><td class="n">658.663</td><td class="sh">local, não publicado</td></tr>
+<tr><th class="mono">tramitacao.html</th><td>Pergunta e Autorização, primeira geração</td><td class="n">131.971</td><td class="sh">local, não publicado</td></tr>
 </tbody></table>
 
 <h2 class="sec">Os dados</h2>
-<p class="sub">Os arquivos que sustentam os relatórios acima, em formato aberto. O <i>hash</i> de cada um está
-publicado para que qualquer alteração futura seja detectável.</p>
+<p class="sub">As planilhas que sustentam os relatórios acima, em formato aberto. Cada uma tem um código de
+conferência publicado, para que qualquer alteração futura possa ser percebida.<sup class="nref"><a href="#nota-2" id="ref-2">2</a></sup></p>
 <table>
-<thead><tr><th>Arquivo</th><th>O que é</th><th class="n">Bytes</th><th>sha256</th></tr></thead>
+<thead><tr><th>Arquivo</th><th class="n">Tamanho</th><th>Código de conferência</th></tr></thead>
 <tbody>
-<tr><th><a href="dados/pedidos-de-informacao.csv">pedidos-de-informacao.csv</a></th><td>Os 1.231 requerimentos de informação, com desfecho de cada um</td><td class="n">349.323</td><td class="mono sh">136202ed3015a673</td></tr>
-<tr><th><a href="dados/tipos-de-documento.csv">tipos-de-documento.csv</a></th><td>Os 48 tipos de documento e quantos são legíveis</td><td class="n">1.445</td><td class="mono sh">8a2fa49013007422</td></tr>
-<tr><th><a href="dados/ocorrencias.csv">ocorrencias.csv</a></th><td>As 874 ocorrências brutas das três palavras-chave</td><td class="n">698.394</td><td class="mono sh">d1e526ed055ca8ad</td></tr>
-<tr><th><a href="dados/documentos.csv">documentos.csv</a></th><td>Os documentos do caso, com endereço de origem</td><td class="n">114.268</td><td class="mono sh">e1d6b8ca4fec1c34</td></tr>
-<tr><th><a href="dados/emendas.csv">emendas.csv</a></th><td>As emendas ao PL 1882/2025</td><td class="n">33.603</td><td class="mono sh">84e8ac206993fb69</td></tr>
-<tr><th><a href="dados/votacoes.csv">votacoes.csv</a></th><td>As votações nominais do caso</td><td class="n">22.536</td><td class="mono sh">99a3a6f18472ea93</td></tr>
-<tr><th><a href="dados/sessoes.csv">sessoes.csv</a></th><td>As sessões em que o caso apareceu</td><td class="n">18.697</td><td class="mono sh">a46665e4e195803a</td></tr>
-<tr><th><a href="dados/anexos_pendentes.csv">anexos_pendentes.csv</a></th><td>Os 68 documentos do caso que existem só como anexo</td><td class="n">10.505</td><td class="mono sh">7419d4cdb4639854</td></tr>
-<tr><th><a href="dados/contagens.json">contagens.json</a></th><td>Todas as contagens desta série, em JSON</td><td class="n">910</td><td class="mono sh">85ccfacf851ff868</td></tr>
+<tr><th><a href="dados/pedidos-de-informacao.csv" title="pedidos-de-informacao.csv">Os 1.231 requerimentos de informação, com desfecho de cada um</a></th><td class="n">349.323</td><td class="mono sh">136202ed3015a673</td></tr>
+<tr><th><a href="dados/tipos-de-documento.csv" title="tipos-de-documento.csv">Os 48 tipos de documento e quantos são legíveis</a></th><td class="n">1.445</td><td class="mono sh">8a2fa49013007422</td></tr>
+<tr><th><a href="dados/ocorrencias.csv" title="ocorrencias.csv">As 874 ocorrências brutas das três palavras-chave</a></th><td class="n">698.394</td><td class="mono sh">d1e526ed055ca8ad</td></tr>
+<tr><th><a href="dados/documentos.csv" title="documentos.csv">Os documentos do caso, com endereço de origem</a></th><td class="n">114.268</td><td class="mono sh">e1d6b8ca4fec1c34</td></tr>
+<tr><th><a href="dados/emendas.csv" title="emendas.csv">As emendas ao PL 1882/2025</a></th><td class="n">33.603</td><td class="mono sh">84e8ac206993fb69</td></tr>
+<tr><th><a href="dados/votacoes.csv" title="votacoes.csv">As votações nominais do caso</a></th><td class="n">22.536</td><td class="mono sh">99a3a6f18472ea93</td></tr>
+<tr><th><a href="dados/sessoes.csv" title="sessoes.csv">As sessões em que o caso apareceu</a></th><td class="n">18.697</td><td class="mono sh">a46665e4e195803a</td></tr>
+<tr><th><a href="dados/anexos_pendentes.csv" title="anexos_pendentes.csv">Os 68 documentos do caso que existem só como anexo</a></th><td class="n">10.505</td><td class="mono sh">7419d4cdb4639854</td></tr>
+<tr><th><a href="dados/contagens.json" title="contagens.json">Todas as contagens desta série, num único arquivo</a></th><td class="n">910</td><td class="mono sh">85ccfacf851ff868</td></tr>
 </tbody></table>
 
 <h2 class="sec">Como as versões funcionam</h2>
 <p class="sub">Cada relatório tem um endereço estável — <span class="mono">/dossie/</span>,
 <span class="mono">/tramitacao/</span>, <span class="mono">/dificuldades/</span> — que sempre aponta para a
 versão mais recente. Cada versão também fica congelada no seu próprio endereço
-(<span class="mono">/dossie/v4/</span>, por exemplo) e nunca muda depois de publicada. O manifesto
-<a href="versoes.json" class="mono">versoes.json</a> lista todas as versões com data, tamanho e
-<i>hash</i>, para que uma citação feita hoje continue verificável amanhã.</p>
+(<span class="mono">/dossie/v5/</span>, por exemplo) e nunca muda depois de publicada. Uma
+<a href="versoes.json">lista de todas as versões</a>, com data, tamanho e código de conferência, garante
+que uma citação feita hoje continue verificável amanhã.<sup class="nref"><a href="#nota-3" id="ref-3">3</a></sup></p>
+
+<section class="notas-fim" aria-label="Notas">
+<h2>Notas</h2>
+<ol class="notas">
+<li id="nota-1">Os dados foram colhidos por requisições públicas e não autenticadas; as planilhas estão em CSV,
+e as contagens, em JSON. <a class="volta" href="#ref-1" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-2">O código de conferência é o <i>hash</i> SHA-256 do arquivo; a tabela mostra os seus primeiros 16
+caracteres. O nome de cada arquivo aparece ao passar o cursor sobre o link. <a class="volta" href="#ref-2" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-3">O manifesto <span class="mono">versoes.json</span> traz, para cada versão, o SHA-256 completo,
+o tamanho em bytes e a data. <a class="volta" href="#ref-3" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-4">A API pública de proposições da CLDF (<span class="mono">ple.cl.df.gov.br/pleservico/api/public</span>),
+o portal CKAN de dados abertos da Casa, os painéis Power BI do Portal da Transparência e a Biblioteca
+Digital. <a class="volta" href="#ref-4" aria-label="voltar ao texto">↩</a></li>
+</ol>
+</section>
 
 <footer>
-<p>Gerado em 2026-09-24. Relatórios e código sob licença de uso não comercial; os dados derivados sob
-CC BY-SA 4.0, a mesma licença que a fonte declara. As fontes são a API pública de proposições da CLDF, o portal
-de dados abertos da Casa, os painéis do Portal da Transparência e a Biblioteca Digital. Nenhum sistema foi
-acessado com credencial e nenhuma informação restrita foi usada.</p>
+<p>Gerado em 2026-10-02. Relatórios e código sob licença de uso não comercial; os dados derivados sob
+CC BY-SA 4.0, a mesma licença que a fonte declara. As fontes são os dados abertos de proposições da CLDF, o portal
+de dados abertos da Casa, os painéis do Portal da Transparência e a Biblioteca Digital.<sup class="nref"><a href="#nota-4" id="ref-4">4</a></sup>
+Nenhum sistema foi acessado com senha e nenhuma informação restrita foi usada.</p>
 </footer>
 <div class="rbar" data-relatar-barra>
   <div class="rbar-in">

@@ -34,7 +34,7 @@ DADOS = [
     ("votacoes.csv", "As votações nominais do caso"),
     ("sessoes.csv", "As sessões em que o caso apareceu"),
     ("anexos_pendentes.csv", "Os 68 documentos do caso que existem só como anexo"),
-    ("contagens.json", "Todas as contagens desta série, em JSON"),
+    ("contagens.json", "Todas as contagens desta série, num único arquivo"),
 ]
 
 
@@ -97,7 +97,7 @@ def landing(man):
       <div class="nums">{''.join(f'<div><b>{e(v)}</b><span>{e(l)}</span></div>' for v, l in a['nums'])}</div>
       <p class="vs">Versões:
         {' '.join(f'<a href="{e(x["caminho"])}" title="{e(x["sha256"][:16])}">{e(x["v"])}</a>' for x in a['versoes'])}
-        <span class="sh mono" title="sha256 da versão atual">{e(a['atual']['sha256'][:16] if a['atual']['sha256'] else '')}</span>
+        <span class="sh mono" title="código de conferência da versão atual">{e(a['atual']['sha256'][:16] if a['atual']['sha256'] else '')}</span>
       </p>
     </article>""" for a in man["artefatos"])
 
@@ -118,8 +118,8 @@ def landing(man):
         return f"{n:,}".replace(",", ".")
 
     linhas = "\n".join(
-        f'<tr><th><a href="dados/{e(d["arquivo"])}">{e(d["arquivo"])}</a></th>'
-        f'<td>{e(d["descricao"])}</td><td class="n">{bytes_br(d["bytes"])}</td>'
+        f'<tr><th><a href="dados/{e(d["arquivo"])}" title="{e(d["arquivo"])}">{e(d["descricao"])}</a></th>'
+        f'<td class="n">{bytes_br(d["bytes"])}</td>'
         f'<td class="mono sh">{e(d["sha256"][:16])}</td></tr>'
         for d in man["dados"])
 
@@ -168,6 +168,12 @@ table{{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}}
 th,td{{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule2);vertical-align:top}}
 td.n{{text-align:right;font-family:ui-monospace,monospace;white-space:nowrap}}
 th a{{color:var(--acc)}}
+sup.nref a{{text-decoration:none;font-weight:600;padding:0 1px;color:var(--acc)}}
+section.notas-fim{{margin-top:40px;padding-top:16px;border-top:1px solid var(--rule)}}
+section.notas-fim h2{{font-size:18px}}
+ol.notas{{font-size:13px;line-height:1.5;padding-left:22px;margin:8px 0 0;color:var(--muted)}}
+ol.notas li{{margin:5px 0}}
+ol.notas a{{color:var(--acc);text-decoration:none}}
 footer{{margin-top:46px;padding-top:22px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--faint);
   max-width:76ch;line-height:1.6}}
 footer a{{color:var(--acc)}}
@@ -176,9 +182,9 @@ footer a{{color:var(--acc)}}
 <header>
   <div class="kick">Dados abertos · Câmara Legislativa do Distrito Federal</div>
   <h1>Relatórios adhoc<br>sobre o que a CLDF publica — e sobre o que não publica</h1>
-  <p class="dek">Cada relatório abaixo é derivado exclusivamente de dados abertos, colhidos por requisições
-  públicas e não autenticadas. Os dados que os sustentam estão nesta mesma página, em CSV. Nada aqui pede
-  que se acredite: tudo pode ser reconstruído.</p>
+  <p class="dek">Cada relatório abaixo foi feito só com dados abertos, lidos em endereços públicos, sem senha
+  nem cadastro. As planilhas que os sustentam estão nesta mesma página. Nada aqui pede que se acredite:
+  qualquer pessoa pode refazer as contas.<sup class="nref"><a href="#nota-1" id="ref-1">1</a></sup></p>
 </header>
 
 <h2 class="sec">Conjunto <span class="mono">relatorio-cldf</span></h2>
@@ -191,16 +197,16 @@ chegar sozinho a esses números.</p>
 <p class="sub">A primeira geração destes mesmos relatórios, anterior à publicação. Fica registrada
 aqui por honestidade de percurso: existe, não está no ar, e foi substituída pelas versões acima.</p>
 <table>
-<thead><tr><th>Rascunho</th><th>O que é</th><th class="n">Bytes</th><th>Estado</th></tr></thead>
+<thead><tr><th>Rascunho</th><th>O que é</th><th class="n">Tamanho</th><th>Estado</th></tr></thead>
 <tbody>
 {rascunhos}
 </tbody></table>
 
 <h2 class="sec">Os dados</h2>
-<p class="sub">Os arquivos que sustentam os relatórios acima, em formato aberto. O <i>hash</i> de cada um está
-publicado para que qualquer alteração futura seja detectável.</p>
+<p class="sub">As planilhas que sustentam os relatórios acima, em formato aberto. Cada uma tem um código de
+conferência publicado, para que qualquer alteração futura possa ser percebida.<sup class="nref"><a href="#nota-2" id="ref-2">2</a></sup></p>
 <table>
-<thead><tr><th>Arquivo</th><th>O que é</th><th class="n">Bytes</th><th>sha256</th></tr></thead>
+<thead><tr><th>Arquivo</th><th class="n">Tamanho</th><th>Código de conferência</th></tr></thead>
 <tbody>
 {linhas}
 </tbody></table>
@@ -209,15 +215,30 @@ publicado para que qualquer alteração futura seja detectável.</p>
 <p class="sub">Cada relatório tem um endereço estável — <span class="mono">/dossie/</span>,
 <span class="mono">/tramitacao/</span>, <span class="mono">/dificuldades/</span> — que sempre aponta para a
 versão mais recente. Cada versão também fica congelada no seu próprio endereço
-(<span class="mono">/{exemplo_v}</span>, por exemplo) e nunca muda depois de publicada. O manifesto
-<a href="versoes.json" class="mono">versoes.json</a> lista todas as versões com data, tamanho e
-<i>hash</i>, para que uma citação feita hoje continue verificável amanhã.</p>
+(<span class="mono">/{exemplo_v}</span>, por exemplo) e nunca muda depois de publicada. Uma
+<a href="versoes.json">lista de todas as versões</a>, com data, tamanho e código de conferência, garante
+que uma citação feita hoje continue verificável amanhã.<sup class="nref"><a href="#nota-3" id="ref-3">3</a></sup></p>
+
+<section class="notas-fim" aria-label="Notas">
+<h2>Notas</h2>
+<ol class="notas">
+<li id="nota-1">Os dados foram colhidos por requisições públicas e não autenticadas; as planilhas estão em CSV,
+e as contagens, em JSON. <a class="volta" href="#ref-1" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-2">O código de conferência é o <i>hash</i> SHA-256 do arquivo; a tabela mostra os seus primeiros 16
+caracteres. O nome de cada arquivo aparece ao passar o cursor sobre o link. <a class="volta" href="#ref-2" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-3">O manifesto <span class="mono">versoes.json</span> traz, para cada versão, o SHA-256 completo,
+o tamanho em bytes e a data. <a class="volta" href="#ref-3" aria-label="voltar ao texto">↩</a></li>
+<li id="nota-4">A API pública de proposições da CLDF (<span class="mono">ple.cl.df.gov.br/pleservico/api/public</span>),
+o portal CKAN de dados abertos da Casa, os painéis Power BI do Portal da Transparência e a Biblioteca
+Digital. <a class="volta" href="#ref-4" aria-label="voltar ao texto">↩</a></li>
+</ol>
+</section>
 
 <footer>
 <p>Gerado em {e(man['gerado'])}. Relatórios e código sob licença de uso não comercial; os dados derivados sob
-CC BY-SA 4.0, a mesma licença que a fonte declara. As fontes são a API pública de proposições da CLDF, o portal
-de dados abertos da Casa, os painéis do Portal da Transparência e a Biblioteca Digital. Nenhum sistema foi
-acessado com credencial e nenhuma informação restrita foi usada.</p>
+CC BY-SA 4.0, a mesma licença que a fonte declara. As fontes são os dados abertos de proposições da CLDF, o portal
+de dados abertos da Casa, os painéis do Portal da Transparência e a Biblioteca Digital.<sup class="nref"><a href="#nota-4" id="ref-4">4</a></sup>
+Nenhum sistema foi acessado com senha e nenhuma informação restrita foi usada.</p>
 </footer>
 </div>
 </html>
